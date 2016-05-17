@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>SharePointサイトコレクション モニタースクリプトの登録</h2>
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>管理者ユーザ</td>
+            <td>@Html.TextBox("user")</td>
+        </tr>
+        <tr>
+            <td>パスワード</td>
+            <td>@Html.Password("password")</td>
+        </tr>
+    </table>
+    <input name="command" type="submit" value="モニター開始"/>
+    <input name="command" type="submit" value="モニター終了" />
+}

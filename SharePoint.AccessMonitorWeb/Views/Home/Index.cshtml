@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<script src="/Scripts/jquery-1.10.2.js"></script>
+<script src="/Scripts/jquery.signalR-2.2.0.js"></script>
+<script src="/signalr/hubs"></script>
+<script>
+        $.connection.hub.start().done(function () {
+            $("#connection-satus").text("接続済み");
+        });
+        var myHub = $.connection.monitorHub;
+        myHub.client.update = function (model) {
+            $("#messagelist tbody").prepend($('<tr class="msg2"><td colspan="3"><p class="ellipsis">' + model.Url + "</p></td></tr>"));
+            $("#messagelist tbody").prepend($('<tr class="msg1"><td><p class="ellipsis">' + model.Timestamp + '</p></td><td><p class="ellipsis">' + model.Title + '</p></td><td><p class="ellipsis">' + model.User + '</p></td></tr>'));
+            if ($("#messagelist tbody tr").length > 100) {
+                $("#messagelist tbody tr:last-child").remove()
+                $("#messagelist tbody tr:last-child").remove()
+            }
+        };
+
+</script>
+<h2>アクセスログモニター<span style="font-size:small;" id="connection-satus">未接続</span></h2>
+<table id="messagelist">
+    <thead>
+        <tr><th width="20%">時刻</th><th>タイトル</th><th width="20%">ユーザ</th></tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+

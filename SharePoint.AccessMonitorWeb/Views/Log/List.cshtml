@@ -1,0 +1,17 @@
+﻿@model SharePoint.AccessMonitorWeb.Models.LogViewModel
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+<table>
+    @foreach (var item in Model.Logs.Reverse<SharePoint.AccessMonitorWeb.Models.LogItem>().Take(300))
+    {
+        <tr>
+            <td>@(item.Timestamp.ToString("MM:dd HH:mm:ss fff"))</td>
+            <td>@(item.User)</td>
+            <td>@(item.Message)</td>
+        </tr>
+    }
+</table>
+
